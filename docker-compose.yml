@@ -1,5 +1,4 @@
 services:
-
   nestjs:
     build:
       context: .
@@ -13,9 +12,9 @@ services:
     environment:
       - NODE_ENV=development
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
-  # Serviço de banco de dados MySQL
   db:
     image: mysql:latest
     container_name: mysql-db
@@ -28,6 +27,11 @@ services:
       - '3306:3306'
     volumes:
       - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
 volumes:
   mysql_data:
