@@ -7,43 +7,42 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-model Capybara{
-  id Int @id @default(autoincrement())
-  name String @db.VarChar(80)
-  age Int
-  weight Float
-  status healthStatus
-  habitat Habitat @relation(fields: [habitatId], references: [id])
+model Capybara {
+  id        Int            @id @default(autoincrement())
+  name      String         @db.VarChar(80)
+  age       Int
+  weight    Float?
+  health    healthStatus
+  habitat   Habitat        @relation(fields: [habitatId], references: [id])
   habitatId Int
-  notes CapybaraNote[]
+  notes     CapybaraNote[]
 }
 
-model Habitat{
-  id Int @id @default(autoincrement())
-  name String @db.VarChar(80)
-  is_enable Boolean
+model Habitat {
+  id        Int        @id @default(autoincrement())
+  name      String     @db.VarChar(80)
+  is_enable Boolean    @default(false)
   capybaras Capybara[]
 }
 
-model CapybaraNote{
-  capybara Capybara @relation(fields: [capybaraId], references: [id])
-  capybaraId Int
-  note Note @relation(fields: [noteId], references: [id])
-  noteId Int
+model CapybaraNote {
+  capybara     Capybara @relation(fields: [capybaraId], references: [id])
+  capybaraId   Int
+  note         Note     @relation(fields: [noteId], references: [id])
+  noteId       Int
+  comportament String?  @db.VarChar(255)
+  observations String?  @db.VarChar(255)
 
   @@id([noteId, capybaraId])
 }
 
-model Note{
-  createdAt DateTime @default(now())
-  id Int @id @default(autoincrement())
-  comportament String? @db.VarChar(255)
-  observations String? @db.VarChar(255)
+model Note {
+  createdAt DateTime       @default(now())
+  id        Int            @id @default(autoincrement())
   Capybaras CapybaraNote[]
 }
 
-enum healthStatus{
+enum healthStatus {
   HEALTHY
   NEED_CARE
   DIED
