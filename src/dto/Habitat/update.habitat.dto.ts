@@ -1,8 +1,12 @@
-import {IsString, IsNotEmpty, IsOptional, IsBoolean } from 'class-validator'
+import {IsString, IsNotEmpty, IsOptional, IsBoolean, IsInt } from 'class-validator'
 
 export class UpdateHabitatDTO{
-    @IsString()
+    @IsInt()
     @IsNotEmpty()
+    id: number
+
+    @IsString()
+    @IsOptional()
     name: string
 
     @IsBoolean()
