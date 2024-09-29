@@ -16,4 +16,8 @@ export class UpdateCapybaraNoteDTO{
     @IsString()
     @IsOptional()
     observations: string
+
+    @IsInt()
+    @IsOptional()
+    habitatId: number
 }
