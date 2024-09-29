@@ -1,2 +1,2 @@
-export * from './create.capybara-note'
-export * from './update.capybara-note'
+export * from './create.capybara-note.dto'
+export * from './update.capybara-note.dto'
