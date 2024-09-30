@@ -8,14 +8,14 @@ datasource db {
 }
 
 model Capybara {
-  id        Int            @id @default(autoincrement())
-  name      String         @db.VarChar(80)
+  id        Int          @id @default(autoincrement())
+  name      String       @db.VarChar(80)
   age       Int
   weight    Float?
   health    healthStatus
-  habitat   Habitat        @relation(fields: [habitatId], references: [id])
+  habitat   Habitat      @relation(fields: [habitatId], references: [id])
   habitatId Int
-  notes     CapybaraNote[]
+  notes     Note[]
 }
 
 model Habitat {
@@ -25,21 +25,13 @@ model Habitat {
   capybaras Capybara[]
 }
 
-model CapybaraNote {
+model Note {
+  id           Int      @id @default(autoincrement())
   capybara     Capybara @relation(fields: [capybaraId], references: [id])
   capybaraId   Int
-  note         Note     @relation(fields: [noteId], references: [id])
-  noteId       Int
   comportament String?  @db.VarChar(255)
   observations String?  @db.VarChar(255)
-
-  @@id([noteId, capybaraId])
-}
-
-model Note {
-  createdAt DateTime       @default(now())
-  id        Int            @id @default(autoincrement())
-  Capybaras CapybaraNote[]
+  date         DateTime @default(now())
 }
 
 enum healthStatus {
