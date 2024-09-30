@@ -1,7 +1,15 @@
-import { IsDate, IsInt, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsInt, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 export class CreateNoteDTO{
     @IsNotEmpty()
-    @IsDate()
-    date: Date
+    @IsInt()
+    capybaraId: number
+
+    @IsString()
+    @IsOptional()
+    comportament: string
+
+    @IsString()
+    @IsOptional()
+    observations: string
 }

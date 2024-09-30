@@ -2,10 +2,6 @@ import { healthStatus } from "@prisma/client";
 import { IsInt, IsNotEmpty, IsString, IsOptional } from "class-validator";
 
 export class UpdateCapybaraDTO{
-    @IsNotEmpty()
-    @IsInt()
-    id: number
-    
     @IsOptional()
     @IsString()
     name: string

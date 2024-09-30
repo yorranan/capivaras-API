@@ -1,13 +1,9 @@
 import { IsInt, IsNotEmpty, IsOptional, IsString } from "class-validator";
 
-export class CreateCapybaraNoteDTO{
+export class UpdateNoteDTO{
     @IsNotEmpty()
     @IsInt()
     capybaraId: number
-
-    @IsNotEmpty()
-    @IsInt()
-    noteId: number
 
     @IsString()
     @IsOptional()
