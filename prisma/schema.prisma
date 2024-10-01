@@ -16,6 +16,7 @@ model Capybara {
   habitat   Habitat      @relation(fields: [habitatId], references: [id])
   habitatId Int
   notes     Note[]
+  pictures  Pictures[]
 }
 
 model Habitat {
@@ -32,6 +33,13 @@ model Note {
   comportament String?  @db.VarChar(255)
   observations String?  @db.VarChar(255)
   date         DateTime @default(now())
+}
+
+model Pictures {
+  id         Int      @id @default(autoincrement())
+  link       String   @db.VarChar(255)
+  capybara   Capybara @relation(fields: [capybaraId], references: [id])
+  capybaraId Int
 }
 
 enum healthStatus {
