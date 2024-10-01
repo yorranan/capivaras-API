@@ -1,12 +1,13 @@
-import { doesNotReject } from "assert";
-import { error } from "console";
+import { Injectable } from "@nestjs/common";
 import { CreateCapybaraDTO, UpdateCapybaraDTO } from "src/dto/Capybara";
 import { PrismaService } from "src/prisma/prisma.service";
 
+@Injectable()
 export class CapybaraService{
     constructor(private prisma: PrismaService){}
-    async createCapybara(dto: CreateCapybaraDTO){
-        const capybara = this.prisma.capybara.create({
+
+    async create(dto: CreateCapybaraDTO){
+        const capybara = await this.prisma.capybara.create({
             data:{
                 name: dto.name,
                 age: dto.age,
@@ -15,11 +16,12 @@ export class CapybaraService{
                 habitatId: dto.habitatId
             }
         })
+        console.log(capybara)
     }
 
-    async updateCapybara(dto: UpdateCapybaraDTO){
+    async update(id: number, dto: UpdateCapybaraDTO){
         const existingCapybara = await this.prisma.capybara.findUnique({
-            where: {id: dto.id}
+            where: {id: id}
         })
 
         if(!existingCapybara){
@@ -42,7 +44,24 @@ export class CapybaraService{
                 health: dto.health !== undefined ? dto.health : existingCapybara.health,
                 habitatId: dto.habitatId !== undefined ? dto.habitatId : existingCapybara.habitatId
             },
-            where: {id: dto.id}
+            where: {id: id}
         })
+
+        console.log(capybara)
+    }
+
+
+    async getAll(){
+        return await this.prisma.capybara.findMany()
+    }
+
+    async getById(id: number) {
+        const result = await this.prisma.capybara.findUnique({
+            where: { id: id },
+        });
+        if (!result) {
+            throw new Error('Capybara not found!');
+        }
+        return result;
     }
 }
