@@ -1,24 +1,30 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { CreateCapybaraDTO, UpdateCapybaraDTO } from 'src/dto/Capybara';
+import { CapybaraService } from 'src/services/capybara.service';
 
 @Controller('capybara')
 export class CapybaraController {
+    constructor(private capybara: CapybaraService){}
+
     @Get()
     getAll(){
-        console.log('Get All Habitats')
+        return this.capybara.getAll()
     }
     
-    @Get('id')
-    getById(){
-        console.log('Get BY ID HABITAT')
+    @Get(':id')
+    getByI(@Param('id') id: string){
+        const queryId = parseInt(id, 10); 
+        return this.capybara.getById(queryId)
     }
     
     @Post('create')
-    create(){
-        console.log('post CREATE')
+    create(@Body() dto: CreateCapybaraDTO){
+        return this.capybara.create(dto)
     }
 
-    @Post('update')
-    update(){
-        console.log('post UPDATE')
+    @Patch('update/:id')
+    update(@Param('id') id: string, @Body() dto: UpdateCapybaraDTO){
+        const queryId = parseInt(id, 10); 
+        return this.capybara.update(queryId, dto);
     }
 }

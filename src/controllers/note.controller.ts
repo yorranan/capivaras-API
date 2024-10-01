@@ -1,26 +1,30 @@
-import { Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, Patch, Post } from "@nestjs/common";
+import { CreateNoteDTO } from "src/dto/Note";
+import { NoteService } from "src/services/note.service";
 
 @Controller('note')
 export class NoteController{
-    constructor(){}
+    constructor(private note: NoteService){}
     
     @Get()
     getAll(){
-        console.log('Get All Habitats')
+        return this.note.getAll()
     }
     
-    @Get('id')
-    getById(){
-        console.log('Get BY ID HABITAT')
+    @Get(':id')
+    getById(@Param('id') id: string){
+        const queryId = parseInt(id, 10)
+        return this.note.getById(queryId)
     }
     
     @Post('create')
-    create(){
-        console.log('post CREATE')
+    create(@Body() dto: CreateNoteDTO){
+        return this.note.create(dto)
     }
 
-    @Post('update')
-    update(){
-        console.log('post UPDATE')
+    @Patch('update/:id')
+    update(@Param('id') id: string, @Body() dto){
+        const queryId = parseInt(id, 10)
+        return this.note.update(queryId, dto)
     }
 }

@@ -1,24 +1,32 @@
-import { Controller, Get, Post } from "@nestjs/common";
+import { Controller, Get, Post, Param, Patch, Body, HttpStatus, HttpCode } from "@nestjs/common";
+import { identity } from "rxjs";
+import { CreateHabitatDTO, UpdateHabitatDTO } from "src/dto/Habitat";
+import { HabitatService } from "src/services/habitat.service";
 
 @Controller('habitat')
 export class HabitatController{
+    constructor(private habitat: HabitatService){}
+
     @Get()
     getAll(){
-        console.log('Get All Habitats')
+        return this.habitat.getAll()
     }
 
-    @Get('id')
-    getById(){
-        console.log('Get BY ID HABITAT')
+    @Get(`:id`)
+    getById(@Param('id') id: string){
+        const queryId = parseInt(id, 10)
+        return this.habitat.getById(queryId)
     }
 
+    @HttpCode(HttpStatus.OK)
     @Post('create')
-    create(){
-        console.log('post CREATE')
+    create(@Body() dto: CreateHabitatDTO){
+        return this.habitat.create(dto)
     }
 
-    @Post('update')
-    update(){
-        console.log('post UPDATE')
+    @Patch('update/:id')
+    update(@Param('id') id: string, @Body() dto: UpdateHabitatDTO){
+        const queryId = parseInt(id, 10)
+        return this.habitat.update(queryId, dto)
     }
 }
