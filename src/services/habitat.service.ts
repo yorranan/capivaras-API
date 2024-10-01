@@ -56,6 +56,10 @@ export class HabitatService {
   }
 
   async deleteById(id: number) {
+    await this.prisma.capybara.deleteMany({
+      where: {habitatId: id}
+    })
+
     await this.prisma.habitat.delete({
       where: { id: id },
     });

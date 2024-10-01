@@ -72,6 +72,22 @@ export class CapybaraService {
   }
 
   async deleteById(id: number) {
+    const existingCapybara = await this.prisma.capybara.findUnique({
+      where: { id: id },
+    });
+
+    if (!existingCapybara) {
+      throw new Error('Capybara not found!');
+    }
+
+    await this.prisma.note.deleteMany({
+      where: { capybaraId: id },
+    });
+
+    await this.prisma.pictures.deleteMany({
+      where: { capybaraId: id }
+    })
+
     await this.prisma.capybara.delete({
       where: { id: id },
     });

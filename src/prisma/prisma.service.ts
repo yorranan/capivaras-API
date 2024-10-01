@@ -18,7 +18,8 @@ export class PrismaService extends PrismaClient {
     return this.$transaction([
         this.capybara.deleteMany(),
         this.habitat.deleteMany(),
-        this.note.deleteMany()
+        this.note.deleteMany(),
+        this.pictures.deleteMany()
     ]);
   }
 }
