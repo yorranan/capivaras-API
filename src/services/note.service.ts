@@ -5,6 +5,23 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class NoteService {
   constructor(private prisma: PrismaService) {}
+
+  async getAll() {
+    return await this.prisma.note.findMany();
+  }
+
+  async getById(noteId: number) {
+    const capybaraNote = await this.prisma.note.findUnique({
+      where: { id: noteId },
+    });
+
+    if (!capybaraNote) {
+      throw new Error('Capybara Note not found!');
+    }
+
+    return capybaraNote;
+  }
+
   async create(dto: CreateNoteDTO) {
     const capybara = await this.prisma.capybara.findUnique({
       where: { id: dto.capybaraId },
@@ -21,7 +38,7 @@ export class NoteService {
         observations: dto.observations,
       },
     });
-    console.log(note)
+    console.log(note);
   }
 
   async update(id: number, dto: UpdateNoteDTO) {
@@ -41,22 +58,16 @@ export class NoteService {
       },
       where: { id: id },
     });
-    console.log(note)
+    console.log(note);
   }
 
-  async getAll() {
-    return await this.prisma.note.findMany();
+  async deleteAll() {
+    await this.prisma.note.deleteMany();
   }
 
-  async getById(noteId: number) {
-    const capybaraNote = await this.prisma.note.findUnique({
-      where: { id: noteId },
+  async deleteById(id: number) {
+    await this.prisma.note.delete({
+      where: { id: id },
     });
-
-    if (!capybaraNote) {
-      throw new Error('Capybara Note not found!');
-    }
-
-    return capybaraNote;
   }
 }
