@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { CreateCapybaraDTO, UpdateCapybaraDTO } from 'src/dto/Capybara';
 import { CapybaraService } from 'src/services/capybara.service';
 
@@ -12,8 +12,8 @@ export class CapybaraController {
     }
     
     @Get(':id')
-    getByI(@Param('id') id: string){
-        const queryId = parseInt(id, 10); 
+    getByID(@Param('id') id: string){
+        const queryId = parseInt(id, 10)
         return this.capybara.getById(queryId)
     }
     
@@ -24,7 +24,13 @@ export class CapybaraController {
 
     @Patch('update/:id')
     update(@Param('id') id: string, @Body() dto: UpdateCapybaraDTO){
-        const queryId = parseInt(id, 10); 
-        return this.capybara.update(queryId, dto);
+        const queryId = parseInt(id, 10)
+        return this.capybara.update(queryId, dto)
+    }
+
+    @Delete('delete/:id')
+    deleteByID(@Param('id') id: string){
+        const queryId = parseInt(id, 10)
+        return this.capybara.deleteById(queryId)
     }
 }

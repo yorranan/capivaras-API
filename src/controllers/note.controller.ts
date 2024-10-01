@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
 import { CreateNoteDTO } from "src/dto/Note";
 import { NoteService } from "src/services/note.service";
 
@@ -26,5 +26,11 @@ export class NoteController{
     update(@Param('id') id: string, @Body() dto){
         const queryId = parseInt(id, 10)
         return this.note.update(queryId, dto)
+    }
+
+    @Delete('delete/:id')
+    deleteByID(@Param('id') id: string){
+        const queryId = parseInt(id, 10)
+        return this.note.deleteById(queryId)
     }
 }

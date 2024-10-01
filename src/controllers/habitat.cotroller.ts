@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Param, Patch, Body, HttpStatus, HttpCode } from "@nestjs/common";
+import { Controller, Get, Post, Param, Patch, Body, HttpStatus, HttpCode, Delete } from "@nestjs/common";
 import { identity } from "rxjs";
 import { CreateHabitatDTO, UpdateHabitatDTO } from "src/dto/Habitat";
 import { HabitatService } from "src/services/habitat.service";
@@ -28,5 +28,11 @@ export class HabitatController{
     update(@Param('id') id: string, @Body() dto: UpdateHabitatDTO){
         const queryId = parseInt(id, 10)
         return this.habitat.update(queryId, dto)
+    }
+
+    @Delete('delete/:id')
+    deleteByID(@Param('id') id: string){
+        const queryId = parseInt(id, 10)
+        return this.habitat.deleteById(queryId)
     }
 }
