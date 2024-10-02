@@ -40,3 +40,4 @@ $ npm run test
 
 ## License
 
+[MIT](https://github.com/yorranan/capivaras-api/blob/main/LICENSE)
