@@ -18,6 +18,12 @@ export class HabitatController{
         return this.habitat.getById(queryId)
     }
 
+    @Get(':id/capybaras')
+    getCapybaras(@Param('id') id: string){
+        const queryId = parseInt(id, 10)
+        return this.habitat.getCapivarasInHabitat(queryId)
+    }
+
     @HttpCode(HttpStatus.OK)
     @Post()
     create(@Body() dto: CreateHabitatDTO){

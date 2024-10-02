@@ -30,7 +30,6 @@ export class CapybaraService {
         habitatId: dto.habitatId,
       },
     });
-    console.log(capybara);
   }
 
   async update(id: number, dto: UpdateCapybaraDTO) {
@@ -63,8 +62,6 @@ export class CapybaraService {
       },
       where: { id: id },
     });
-
-    console.log(capybara);
   }
 
   async deleteAll() {

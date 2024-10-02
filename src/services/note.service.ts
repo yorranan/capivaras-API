@@ -38,7 +38,6 @@ export class NoteService {
         observations: dto.observations,
       },
     });
-    console.log(note);
   }
 
   async update(id: number, dto: UpdateNoteDTO) {
@@ -58,7 +57,6 @@ export class NoteService {
       },
       where: { id: id },
     });
-    console.log(note);
   }
 
   async deleteAll() {

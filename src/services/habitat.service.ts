@@ -18,6 +18,16 @@ export class HabitatService {
     return result;
   }
 
+  async getCapivarasInHabitat(habitatId: number) {
+    // Buscar todas as capivaras que estão no habitat com o habitatId fornecido
+    const capivaras = await this.prisma.capybara.findMany({
+      where: { habitatId: habitatId },
+    });
+  
+    // Retornar a lista de capivaras encontradas
+    return capivaras;
+  }
+
   constructor(private prisma: PrismaService) {}
   async create(dto: CreateHabitatDTO) {
     const habitat = await this.prisma.habitat.create({
@@ -26,7 +36,6 @@ export class HabitatService {
         is_enable: dto.is_enable,
       },
     });
-    console.log(habitat);
   }
 
   async update(id: number, dto: UpdateHabitatDTO) {
@@ -48,7 +57,6 @@ export class HabitatService {
       },
       where: { id: id },
     });
-    console.log(habitat);
   }
 
   async deleteAll() {
