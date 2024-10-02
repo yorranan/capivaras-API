@@ -17,18 +17,18 @@ export class NoteController{
         return this.note.getById(queryId)
     }
     
-    @Post('create')
+    @Post()
     create(@Body() dto: CreateNoteDTO){
         return this.note.create(dto)
     }
 
-    @Patch('update/:id')
+    @Patch(':id')
     update(@Param('id') id: string, @Body() dto){
         const queryId = parseInt(id, 10)
         return this.note.update(queryId, dto)
     }
 
-    @Delete('delete/:id')
+    @Delete(':id')
     deleteByID(@Param('id') id: string){
         const queryId = parseInt(id, 10)
         return this.note.deleteById(queryId)

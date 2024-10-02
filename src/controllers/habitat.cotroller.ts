@@ -19,18 +19,18 @@ export class HabitatController{
     }
 
     @HttpCode(HttpStatus.OK)
-    @Post('create')
+    @Post()
     create(@Body() dto: CreateHabitatDTO){
         return this.habitat.create(dto)
     }
 
-    @Patch('update/:id')
+    @Patch(':id')
     update(@Param('id') id: string, @Body() dto: UpdateHabitatDTO){
         const queryId = parseInt(id, 10)
         return this.habitat.update(queryId, dto)
     }
 
-    @Delete('delete/:id')
+    @Delete(':id')
     deleteByID(@Param('id') id: string){
         const queryId = parseInt(id, 10)
         return this.habitat.deleteById(queryId)

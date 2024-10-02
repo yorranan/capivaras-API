@@ -17,18 +17,18 @@ export class CapybaraController {
         return this.capybara.getById(queryId)
     }
     
-    @Post('create')
+    @Post()
     create(@Body() dto: CreateCapybaraDTO){
         return this.capybara.create(dto)
     }
 
-    @Patch('update/:id')
+    @Patch(':id')
     update(@Param('id') id: string, @Body() dto: UpdateCapybaraDTO){
         const queryId = parseInt(id, 10)
         return this.capybara.update(queryId, dto)
     }
 
-    @Delete('delete/:id')
+    @Delete(':id')
     deleteByID(@Param('id') id: string){
         const queryId = parseInt(id, 10)
         return this.capybara.deleteById(queryId)
