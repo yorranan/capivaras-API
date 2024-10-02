@@ -1,4 +1,4 @@
-## Description
+## S2Capivaras
 
 API para gerenciamento de capivaras em um habitat.
 
