@@ -100,4 +100,4 @@ Habitat:
 
 ## License
 
-[MIT](https://github.com/yorranan/capivaras-api/blob/main/LICENSE)
+Este projeto está sob a licença [MIT](https://github.com/yorranan/capivaras-api/blob/main/LICENSE)
