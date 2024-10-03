@@ -1,19 +1,17 @@
 # S2Capivaras
-
 API para gerenciamento de capivaras em um habitat. Você também pode testar a API no endereço [capivarinha.yorranan.com](https://capivarinha.yorranan.com).
 ## Instalando
 Preferenciamente escolha instalar utilizando o Docker Compose
 ### Setup do projeto
 
 ```bash
-$ npm install
+npm install
 ```
 
 ### Compile e execute o projeto
 
 ```bash
-# development
-$ npm run start
+npm run start
 ```
 
 ### Execute usando Docker
@@ -21,13 +19,13 @@ $ npm run start
 Vá para o diretório do projeto e execute o comando:
 
 ```bash
-$ docker compose up --build -d
+docker compose up --build -d
 ```
 
 ### Pare a execução dos contêineres 
 
 ```bash
-$ docker compose down
+docker compose down
 ```
 
 > Verifique se nenhum dos contêires caiu durante o processo, se necessário reinicie.
@@ -37,8 +35,7 @@ Se tudo ocorrer bem acesse: http://localhost:3000
 ### Execução de teste da página hello
 
 ```bash
-# unit tests
-$ npm run test
+npm run test
 ```
 ## Passando informações através da API
 
@@ -49,7 +46,7 @@ Para cada um dos principais paths (capybara, note, habitat) existe um JSON espec
 Capivara:
 > O *Status de Saúde* pode ser: `HEALTHY`(Saudável), `NEED_CARE` (Precisa de cuidados), e `DIED` (Morta).
 
-```json
+```
 {
 	"name": String,
 	"weight": Float,
@@ -59,7 +56,7 @@ Capivara:
 }
 ```
 Nota:
-```json
+```
 {
 	"capybaraId" : Integer,
 	"observations": String, (Opcional)
@@ -67,7 +64,7 @@ Nota:
 }
 ```
 Habitat:
-```json
+```
 {
 	"name":String,
 	"is_enable": Boolean
