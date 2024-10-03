@@ -1,6 +1,6 @@
 ## S2Capivaras
 
-API para gerenciamento de capivaras em um habitat. Você também pode testar a API no endereço [capivarinhas.yorranan.com](https://capivarinhas.yorranan.com).
+API para gerenciamento de capivaras em um habitat. Você também pode testar a API no endereço [capivarinha.yorranan.com](https://capivarinha.yorranan.com).
 
 ## Setup do projeto
 
