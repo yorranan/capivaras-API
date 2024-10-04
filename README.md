@@ -45,7 +45,7 @@ Para cada um dos principais paths (capybara, note, habitat) existe um JSON espec
 
 Capivara:
 > O *Status de Saúde* pode ser: `HEALTHY`(Saudável), `NEED_CARE` (Precisa de cuidados), e `DIED` (Morta).
-
+Ao começar você deve cadastrar primeiro o habitat, sem habitat não é possível realizar o cadastro de capivaras e notas.
 ```
 {
 	"name": String,
