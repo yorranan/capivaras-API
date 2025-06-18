@@ -8,12 +8,6 @@ Preferenciamente escolha instalar utilizando o Docker Compose
 npm install
 ```
 
-### Compile e execute o projeto
-
-```bash
-npm run start
-```
-
 ### Execute usando Docker
 
 Vá para o diretório do projeto e execute o comando:
@@ -22,11 +16,30 @@ Vá para o diretório do projeto e execute o comando:
 docker compose up --build -d
 ```
 
+Modifique o arquivo conforme a instrução, se for executar no Docker mantenha o trecho `db:3360`, se for apenas local utilze `localhost:3306`.
+
+*Em caso de execução local:*
+
+### Suba o banco de dados
+
+```
+npm run db:dev:up
+```
+
+
+### Compile e execute o projeto
+
+```bash
+npm run start
+```
+
 ### Pare a execução dos contêineres 
 
 ```bash
 docker compose down
 ```
+
+
 
 > Verifique se nenhum dos contêires caiu durante o processo, se necessário reinicie.
 
